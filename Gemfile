@@ -31,6 +31,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
 #moze pomoze
 gem 'rails_12factor'
+gem 'bootstrap-sass', '3.1.7'
 
 
 # Use ActiveStorage variant

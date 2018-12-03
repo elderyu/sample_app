@@ -1,6 +1,12 @@
 class StaticPagesController < ApplicationController
 #dasdsa
 
+class Word1 < String
+  def palindrome?
+    self == reverse
+  end
+end
+
   def home
     #asdsad
   end
@@ -36,7 +42,7 @@ class StaticPagesController < ApplicationController
     end
     @racecar = ("racecar".length).to_s
 
-    @s = {password: @code}
+    #@s = 1 if Range.new(1,9) == (1..9)
 
     # person1 = {first: "John", last: "Brown"}
     # person2 = {first: "Alan", last: "Black"}
@@ -94,6 +100,9 @@ class StaticPagesController < ApplicationController
     #@s = check_palindrome(@a)
 
 
+
+    #w = Word1.new
+    #@s = Symbol.class.superclass
 
   end
 

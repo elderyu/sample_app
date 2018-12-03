@@ -1,8 +1,4 @@
-require "string_extended.rb"
 class StaticPagesController < ApplicationController
-#dasdsa
-
-
 
   def home
     #asdsad
@@ -100,9 +96,49 @@ class StaticPagesController < ApplicationController
 
     #w = Word1.new
     #@s = Symbol.class.superclass
+    # string = "Concatenate"
+    # @s = "Concatenate".shuffle
 
-    @s = "anana".palindrome
+
+    #@s = string.shuffle[0...string.length]
+    user = User.new({first: "Jan", last: "Kowalski", email: "j@k" })
+    @s = user.verify
 
   end
 
 end
+
+class User
+attr_accessor :first, :last, :email
+
+  def initialize(attributes = {})
+    @first = attributes[:first]
+    @last = attributes[:last]
+    @email = attributes[:email]
+  end
+
+  def full_name
+    "#{@first} #{@last}"
+  end
+
+  def formatted_email
+    "#{full_name} <#{@email}>"
+  end
+
+  def alphabetical_name
+    "#{last}, #{first}"
+  end
+
+  def verify
+    full_name.split == alphabetical_name.split(', ').reverse
+  end
+
+end
+# class String
+#   def palindrom
+#     self == reverse
+#   end
+#   def shuffle
+#     split("").shuffle[0..self.length].join
+#   end
+# end

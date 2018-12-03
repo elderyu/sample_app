@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
+#dasdsa
+
   def home
+    #asdsad
   end
 
   def help
@@ -12,6 +15,51 @@ class StaticPagesController < ApplicationController
   end
 
   def test
+    #asdfsa
+    def check_palindrome(s1)
+      #asd
+      if s1 == s1.reverse
+        return "Yup, palindrome!"
+      else
+        return "Not a palindrome."
+      end
+      #s1 == s1.reverse ? "Yup, palindrome!" : "Not a palindrome."
+    end
+
+    arr_char_dcase = ('a'..'z').to_a
+    arr_char_ucase = ('A'..'Z').to_a
+    arr_num = ('1'..'9').to_a
+    arr = arr_char_dcase + arr_num + arr_num + arr_char_ucase
+    @code = "Random code is: "
+    15.times do
+      @code << arr[rand(arr.length-1)]
+    end
+    @racecar = ("racecar".length).to_s
+
+    #@code = rand(10).to_s
+    @a = "A man, a plan, a canal, Panama".split(", ")
+    @a = @a.join
+    @a = @a.split(" ")
+    @a = @a.join
+    @s = @a.downcase!
+    @s = check_palindrome(@s)
+    arr_new = Array.new
+    (1..99).each do |num|
+      @flag = 0
+      (2..num-1).each do |divider|
+        @flag = 1 if num % divider == 0
+      end
+      arr_new << num if @flag == 0
+      @s = arr_new
+    end
+    #@s = @a.join
+    #@s = @a.split(" ")
+    #@s = @a.join(" ")
+    #@s = check_palindrome(@a)
+    #@a.downcase
+    #@s = check_palindrome(@a)
+
+
 
   end
 

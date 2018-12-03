@@ -36,22 +36,56 @@ class StaticPagesController < ApplicationController
     end
     @racecar = ("racecar".length).to_s
 
+    @s = {password: @code}
+
+    # person1 = {first: "John", last: "Brown"}
+    # person2 = {first: "Alan", last: "Black"}
+    # person3 = {first: "Judy", last: "Yellow"}
+    # params = {father: person1, mother: person2, child: person3}
+    # @s = params[:father][:first]
+
+    # params = {name: "Jan", email: "email"}
+    # hashohash = {hash: params, cosinnego: "inne"}
+    # @s = "asd "
+    # spanish = {one: "uno", two: "dos", three: "tres"}
+    # spanish.each do |k,v|
+    #   @s << "#{k} is in spanish #{v}"
+    # end
+
+
+    # def yeller(arr = ['No', 'Array', 'Given!'])
+    #   arr.join.upcase!
+    # end
+    #
+    # @s = yeller(['fdsfeEwr', 'fesfdsj', 'oiujsfcx3'])
+
+    # @s = Array.new
+    # (0..16).each do |num|
+    #   @s << 2**num
+    # end
+
     #@code = rand(10).to_s
-    @a = "A man, a plan, a canal, Panama".split(", ")
-    @a = @a.join
-    @a = @a.split(" ")
-    @a = @a.join
-    @s = @a.downcase!
-    @s = check_palindrome(@s)
-    arr_new = Array.new
-    (1..99).each do |num|
-      @flag = 0
-      (2..num-1).each do |divider|
-        @flag = 1 if num % divider == 0
-      end
-      arr_new << num if @flag == 0
-      @s = arr_new
-    end
+    # @a = "A man, a plan, a canal, Panama".delete(", ").downcase
+    # @s = @a
+    # @s = check_palindrome(@a)
+
+    # @a = @a.join
+    # @a = @a.split(" ")
+    # @a = @a.join
+    # @s = @a.downcase!
+    # @s = check_palindrome(@s)
+
+
+    # arr_new = Array.new
+    # (1..99).each do |num|
+    #   @flag = 0
+    #   (2..num-1).each do |divider|
+    #     @flag = 1 if num % divider == 0
+    #   end
+    #   arr_new << num if @flag == 0
+    #   @s = arr_new
+    # end
+
     #@s = @a.join
     #@s = @a.split(" ")
     #@s = @a.join(" ")

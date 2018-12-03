@@ -1,11 +1,8 @@
+require "string_extended.rb"
 class StaticPagesController < ApplicationController
 #dasdsa
 
-class Word1 < String
-  def palindrome?
-    self == reverse
-  end
-end
+
 
   def home
     #asdsad
@@ -103,6 +100,8 @@ end
 
     #w = Word1.new
     #@s = Symbol.class.superclass
+
+    @s = "anana".palindrome
 
   end
 

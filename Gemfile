@@ -50,7 +50,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
-  gem 'byebug',  '9.0.6', platform: :mri
+  gem 'byebug', platform: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do

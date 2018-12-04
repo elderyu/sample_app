@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "password should be long enough" do
     @user.password = "22"
-    Rails::logger.debug "User password_digest: #{@user.password_digest}"
+    #Rails::logger.debug "User password_digest: #{@user.password_digest}"
     assert_not @user.valid?
   end
 

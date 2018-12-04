@@ -34,6 +34,8 @@ gem 'rails_12factor'
 gem 'bootstrap-sass', '3.3.7'
 # for integration tests
 gem 'rails-controller-testing'
+# for encrypting pasword (has_secure_password)
+gem 'bcrypt', '3.1.12'
 
 
 # Use ActiveStorage variant

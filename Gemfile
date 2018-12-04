@@ -32,6 +32,8 @@ gem 'rails-ujs', '~> 0.1.0'
 #moze pomoze
 gem 'rails_12factor'
 gem 'bootstrap-sass', '3.3.7'
+# for integration tests
+gem 'rails-controller-testing'
 
 
 # Use ActiveStorage variant

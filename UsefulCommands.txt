@@ -1,1 +1,2 @@
 rake db:test:prepare
+Digest::MD5::hexdigest(email.downcase) - graatar's url encoded by MD5 hash algorithm

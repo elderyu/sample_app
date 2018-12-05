@@ -107,33 +107,33 @@ class StaticPagesController < ApplicationController
   end
 
 end
-
-class User
-attr_accessor :first, :last, :email
-
-  def initialize(attributes = {})
-    @first = attributes[:first]
-    @last = attributes[:last]
-    @email = attributes[:email]
-  end
-
-  def full_name
-    "#{@first} #{@last}"
-  end
-
-  def formatted_email
-    "#{full_name} <#{@email}>"
-  end
-
-  def alphabetical_name
-    "#{last}, #{first}"
-  end
-
-  def verify
-    full_name.split == alphabetical_name.split(', ').reverse
-  end
-
-end
+#
+# class User
+# attr_accessor :first, :last, :email
+#
+#   def initialize(attributes = {})
+#     @first = attributes[:first]
+#     @last = attributes[:last]
+#     @email = attributes[:email]
+#   end
+#
+#   def full_name
+#     "#{@first} #{@last}"
+#   end
+#
+#   def formatted_email
+#     "#{full_name} <#{@email}>"
+#   end
+#
+#   def alphabetical_name
+#     "#{last}, #{first}"
+#   end
+#
+#   def verify
+#     full_name.split == alphabetical_name.split(', ').reverse
+#   end
+#
+# end
 # class String
 #   def palindrom
 #     self == reverse

@@ -2,3 +2,13 @@ rake db:test:prepare
 Digest::MD5::hexdigest(email.downcase) - graatar's url encoded by MD5 hash algorithm
 user.errors.full_messages
 web: bundle exec puma -C config/puma.rb #puma in prcfile root directory
+#Rails::logger.debug "User password_digest: #{@user.password_digest}"
+#Rails::logger.debug login_url      http://www.example.com/login
+#Rails::logger.debug login_path     /login
+authenticate(params[:session][:password])
+User.find_by(email: params[:session][:email].downcase)
+flash.now[:danger] #on rendered pages, :success
+session[:user_id] = user.id #expires when browser closed
+user.find przy błędzie zwraca wyjątek
+user.find_by przy błędzie zwraca nila
+==============================================(Because helper methods aren’t available in tests=================================================

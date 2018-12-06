@@ -283,7 +283,7 @@ DEPENDENCIES
   sqlite3!
   turbolinks (~> 5)
   tzinfo-data
-  uglifier (= 3.2.0)
+  uglifier (~> 3.0)
   web-console (>= 3.3.0)
 
 RUBY VERSION

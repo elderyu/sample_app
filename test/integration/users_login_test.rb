@@ -48,10 +48,22 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
   end
 
-  test "user looged in after signup?" do
+  test "user logged in after signup?" do
     post signup_path, params: {user: {name: @user.name, email: @user.email, password: @user.password, password_confirmation: @user.password_confirmation}}
     follow_redirect!
     assert_select "a[href=?]", "/logout"
+  end
+
+  test "login with remembering" do
+    log_in_as @user2, remember_me: '1'
+    assert_not_empty cookies["remember_token"]
+    assert_not_empty assigns(:user).remember_token
+  end
+
+  test "login without remembering" do
+    log_in_as @user2, remember_me: '1'
+    log_in_as @user2, remember_me: '0'
+    assert_empty cookies["remember_token"]
   end
 
 end

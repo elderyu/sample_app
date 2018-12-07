@@ -12,3 +12,7 @@ session[:user_id] = user.id #expires when browser closed
 user.find przy błędzie zwraca wyjątek
 user.find_by przy błędzie zwraca nila
 ==============================================(Because helper methods aren’t available in tests=================================================
+instance variables cannot be passed as arguments to methods
+method implicitly returns last result of operation
+deleting instance variable deletes also local, but not the opposite
+cookies.signed means the cookies cannot be changed in between sessions (closing and opening browser)

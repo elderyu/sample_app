@@ -44,4 +44,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "checking remember method" do
+    assert_not @user.name.nil?
+    @user.remember
+    assert_not @user.remember_digest.blank?
+    #assert_equal @user.remember_token, @user. remember_digest
+  end
+
+  # test "cookies" do
+  #   cookies.signed[:num] = 13
+  #   assert_equal cookies.signed[:num], 13
+  # end
+
 end

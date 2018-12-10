@@ -18,4 +18,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "redirect to target after logging in" do
+    get edit_user_path(@user)
+    follow_redirect!
+    Rails::logger.debug session[:forwarding_url]
+    assert !session[:forwarding_url].nil?
+    assert_template "sessions/new"
+    post login_path, params: {session: {email: @user.email, password: 'password'}}
+    follow_redirect!
+    assert_template "edit"
+  end
+
 end

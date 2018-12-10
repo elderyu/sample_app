@@ -34,7 +34,7 @@ gem 'rails_12factor'
 gem 'bootstrap-sass', '3.3.7'
 # for integration tests
 gem 'rails-controller-testing'
-# for encrypting pasword (has_secure_password)
+# for encrypting password (has_secure_password)
 gem 'bcrypt', '3.1.12'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'duktape'

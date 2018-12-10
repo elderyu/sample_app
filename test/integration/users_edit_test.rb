@@ -20,21 +20,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful edit" do
-    #log_in_as @user
-    Rails::logger.debug @user.id
-    get edit_user_path(@user)
-    Rails::logger.debug @user.id
-    assert_template 'edit'
-    name  = "Foo Bar"
-    email = "foo@bar.com"
-    patch user_path(@user), params: {user: {name: name, email: email, password: "", password_confirmation: ""}}
-    follow_redirect!
-    assert_template 'show'
-    #Rails::logger.debug flash[:danger]
-    #assert_select 'div#error_explanation', "The form contains 4 errors"
-    #Rails::logger.debug
-    # assert_redirected_to @user
-    # #assert_template 'show'
-    # assert_equal "Profile updated", flash[:success]
+    assert !@user.new_record?
+    patch user_path(@user), params: {user: {name: "dsad", email: "foobar@gmail.com", password: "", password_confirmation: ""}}
+    #assert_template "show"
+    assert_select 'div#error_explanation', "The form contains 4 errors"
   end
+
 end

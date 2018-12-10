@@ -12,3 +12,8 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest 'password' %> # needed because column in db is password_digest (encrypted)
+
+sawek:
+  name: Sawek
+  email: aldakloran@gmail.com
+  password_digest: <%= User.digest 'password' %>

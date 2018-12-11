@@ -16,3 +16,4 @@ instance variables cannot be passed as arguments to methods
 method implicitly returns last result of operation
 deleting instance variable deletes also local, but not the opposite
 cookies.signed means the cookies cannot be changed in between sessions (closing and opening browser)
+User.create! - raises exception instead of returning false(avoiding silent errors)

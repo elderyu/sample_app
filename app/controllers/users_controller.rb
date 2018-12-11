@@ -1,10 +1,14 @@
 #require 'byebug'
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update]
+  before_action :logged_in_user, only: [:show, :index, :edit, :update]
   before_action :correct_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new(params[:id])
+  end
+
+  def index
+    @users = User.all
   end
 
   def create

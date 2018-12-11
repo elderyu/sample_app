@@ -10,7 +10,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
-
+    store_location
+    Rails::logger.debug "stored location"
   end
 
   def create
@@ -32,14 +33,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(params[:id])
+    @user = User.find(params[:id])
+    store_location
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       render 'edit'
     end
@@ -67,7 +69,10 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to root_path unless current_user? @user
+      unless current_user? @user
+        flash[:danger] = "Not a valid user for accessing target page."
+        redirect_back_or root_path
+      end
     end
 
     def admin_user

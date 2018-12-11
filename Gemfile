@@ -28,6 +28,11 @@ gem 'jbuilder', '~> 2.5'
 # for adding more users
 gem 'faker', '1.7.3'
 
+# for pagination
+gem 'will_paginate', '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
+
+
 # gem from javascript for messgaes on site
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'

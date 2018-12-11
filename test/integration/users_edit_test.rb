@@ -28,4 +28,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal @user.email, "foobar@gmail.com"
   end
 
+  test "gravatar_for working" do
+    log_in_as @user
+    get edit_user_path(@user)
+    assert_template 'users/edit'
+    assert_select 'div.gravatar_edit'
+    end
+
 end

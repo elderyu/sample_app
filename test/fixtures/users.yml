@@ -11,9 +11,38 @@ two: {}
 michael:
   name: Michael Example
   email: michael@example.com
-  password_digest: <%= User.digest 'password' %> # needed because column in db is password_digest (encrypted)
+  password_digest: <%= User.digest('password') %>
+  id: 1
+  admin: true
+
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
+  id: 2
+
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  password_digest: <%= User.digest('password') %>
+  id: 3
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+  password_digest: <%= User.digest('password') %>
+  id: 4
 
 sawek:
   name: Sawek
   email: aldakloran@gmail.com
   password_digest: <%= User.digest 'password' %>
+  id: 5
+
+<% 30.times do |u| %>
+user_<%= u %>:
+  name: <%= "user_#{u}" %>
+  email: <%= "user_#{u}@gmail.com" %>
+  password_digest: <%= User.digest("password") %>
+  id: <%= 6 + u %>
+<% end %>

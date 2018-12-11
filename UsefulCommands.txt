@@ -17,3 +17,10 @@ method implicitly returns last result of operation
 deleting instance variable deletes also local, but not the opposite
 cookies.signed means the cookies cannot be changed in between sessions (closing and opening browser)
 User.create! - raises exception instead of returning false(avoiding silent errors)
+      <%= render user %> - in html file looks for _user partial
+
+      <ul class="users">
+        <%= render @users %>    - Here Rails infers that @users is a list of User objects; moreover, when called with a collection of users, Rails automatically iterates through them and renders each one with the _user.html.erb partial (inferring the name of the partial from the name of the class).
+      </ul>
+
+toggle! - flips boolean to opposite state

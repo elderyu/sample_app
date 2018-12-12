@@ -24,3 +24,7 @@ User.create! - raises exception instead of returning false(avoiding silent error
       </ul>
 
 toggle! - flips boolean to opposite state
+CGI.escape(user.email) - decodes ASCII to compare emails in mailers
+user.send("#{attribute}_digest") - send method to object, we can use interpolation to alter the argument
+ActionMailer::Base.deliveries.clear - this array is global, so we have to reset it in setup method in tests
+user = assigns :user - lets access instance variables i the corresponding action inside test environment, currently deprecated

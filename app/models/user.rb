@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
-  before_save {email.downcase!} # simpler: before_save {email.downcase!}
+  attr_accessor :remember_token, :activation_token
+  before_save   :email_downcase # simpler: before_save {email.downcase!}
+  before_create :create_activation_digest
 
   has_secure_password
 
@@ -26,14 +27,34 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(self.remember_token))
   end
 
-  # check authentication with given token
-  def authenticated? remember_token
-    !self.remember_digest.nil? ? BCrypt::Password.new(self.remember_digest).is_password?(remember_token) : false
+  # check authentication with given token, example of metaprogramming
+  # makes callback depending on arguments passed
+  def authenticated? attribute, token
+    digest = send "#{attribute}_digest"
+    digest.nil? ? false : BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
     update_attribute :remember_digest, nil
   end
 
+  def activate
+    update_attributes(:activated: true, activated_at: Time.zone.now)
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
+  private
+
+    def email_downcase
+      email.downcase!
+    end
+
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 
 end

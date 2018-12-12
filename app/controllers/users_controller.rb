@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: [:destroy]
 
+
   def new
     @user = User.new(params[:id])
   end
@@ -17,9 +18,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to user_url(@user) #also only @user is enough
+      # log_in @user # not logging in because account not activated
+      @user.send_activation_email
+      flash[:info] = "Please check your email's inbox to activate your account."
+      # redirect_to user_url(@user) #also only @user is enough # commented because account activation required after signing in
+      redirect_to root_path
     else
       render 'new'
       Rails::logger.debug "#{@user.errors.full_messages}"
@@ -81,4 +84,5 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     end
+
 end

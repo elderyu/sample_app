@@ -4,13 +4,11 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :update]
   before_action :admin_user, only: [:destroy]
 
-
   def new
     @user = User.new(params[:id])
   end
 
   def index
-
     @users = User.where(activated: true).paginate(page: params[:page])
     store_location
     Rails::logger.debug "stored location"
@@ -33,6 +31,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     #byebug
   end
 

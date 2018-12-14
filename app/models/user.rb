@@ -3,6 +3,8 @@ class User < ApplicationRecord
   before_save   :email_downcase # simpler: before_save {email.downcase!}
   before_create :create_activation_digest
 
+  has_many :microposts, dependent: :destroy
+
   has_secure_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)+\z/i

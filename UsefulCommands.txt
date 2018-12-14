@@ -16,7 +16,7 @@ instance variables cannot be passed as arguments to methods
 method implicitly returns last result of operation
 deleting instance variable deletes also local, but not the opposite
 cookies.signed means the cookies cannot be changed in between sessions (closing and opening browser)
-User.create! - raises exception instead of returning false(avoiding silent errors)
+User.create! - raises exception instead of returning false(avoiding silent errors) for normal User.create
       <%= render user %> - in html file looks for _user partial
 
       <ul class="users">
@@ -38,3 +38,14 @@ f.hidden_field :email, @user.email
 because the reset link puts the email in params[:email], whereas the latter would put it in params[:user][:email].
 ======================================================================================
 assert_select "input[name=email][type=hidden][value=?]"
+@micropost = @user.micropost.build(content: "Lorem ipsum") - because micropost is associoted with user and after initalization user_id is automatically associated // instead of Micropost.new(content: "dsadas", user_id: @user.id)
+(As with new, build returns an object in memory but doesn’t modify the database.)
+user.microposts.find_by(id: 1)	Finds the micropost with id 1 and user_id equal to user.id
+order('created_at DESC') - one level deeper, creating raw sql code, now we can do this: order(created_at: :desc)
+  has_many :microposts, dependent: :destroy
+
+  As with paginate, we can use the count method through the association. In particular, count does not pull all the microposts out of the database and then call length on the resulting array, as this would become inefficient as the number of microposts grew. Instead, it performs the calculation directly in the database, asking the database to count the microposts with the given user_id (an operation for which all databases are highly optimized). (In the unlikely event that finding the count is still a bottleneck in your application, you can make it even faster using a counter cache.)
+
+  time_ago_in_words
+
+User.order(:created_at).take(6)

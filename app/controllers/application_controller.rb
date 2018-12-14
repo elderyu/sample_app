@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def feed_microposts
+    current_user.feed.paginate(page: params[:page])
+  end
+
 end

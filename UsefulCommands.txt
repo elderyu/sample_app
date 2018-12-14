@@ -49,3 +49,7 @@ order('created_at DESC') - one level deeper, creating raw sql code, now we can d
   time_ago_in_words
 
 User.order(:created_at).take(6)
+
+response.body contains the full HTML source of the page (and not just the page’s body).
+
+assert_select 'h1>img.gravatar'

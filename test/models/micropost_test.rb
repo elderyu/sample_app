@@ -46,12 +46,10 @@ class MicropostTest < ActiveSupport::TestCase
     # Rails::logger.debug Micropost.second.created_at
     # Rails::logger.debug Micropost.last.created_at
     # Rails::logger.debug "="*81
-    Rails::logger.debug time_ago_in_words(3.minutes.ago)   
+    # Rails::logger.debug time_ago_in_words(3.minutes.ago)
     #micropost = @user.microposts.create(content: "Lorem ipsum")
-    assert_difference '@user.microposts.count', -1 do
-      @user.destroy
-    end
-
+    @user.destroy
+    assert_equal @user.microposts.count, 0
   end
 
 

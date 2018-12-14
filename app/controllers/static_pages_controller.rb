@@ -1,7 +1,10 @@
 class StaticPagesController < ApplicationController
 
   def home
-    #asdsad
+    if logged_in?
+      @micropost = current_user.microposts.build
+      @feed_items= current_user.feed.paginate(page: params[:page])
+    end
   end
 
   def help
@@ -14,15 +17,12 @@ class StaticPagesController < ApplicationController
   end
 
   def test
-    #asdfsa
     def check_palindrome(s1)
-      #asd
       if s1 == s1.reverse
         return "Yup, palindrome!"
       else
         return "Not a palindrome."
       end
-      #s1 == s1.reverse ? "Yup, palindrome!" : "Not a palindrome."
     end
 
     arr_char_dcase = ('a'..'z').to_a

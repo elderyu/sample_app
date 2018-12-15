@@ -29,6 +29,7 @@ before_action :correct_user, only: [:destroy]
 
     def correct_user
       @micropost = current_user.microposts.find_by id: params[:id]
+      # redirect if micropost doesnt exist
       redirect_to root_path if @micropost.nil?
     end
 

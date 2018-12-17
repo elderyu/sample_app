@@ -64,22 +64,4 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_match "Micropost (1)", response.body
   end
 
-  test "image upload" do
-    log_in_as @user
-
-    get root_path
-    assert_template 'static_pages/home'
-    assert_match "micropost[picture]", response.body
-    assert_select 'input', name: "micropost[picture]"
-    content = "My hedgehog"
-    picture = fixture_file_upload "test/fixtures/pobrane.jpg"
-    assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: {micropost: {content: content, picture: picture}}
-    end
-    follow_redirect!
-    assert_template 'static_pages/home'
-    assert_match content, response.body
-    assert_match 'pobrane.jpg', response.body
-  end
-
 end

@@ -4,6 +4,7 @@ apple:
   content: "I just ate an apple!"
   created_at: <%= 2.hours.ago %>
   user: michael
+  picture: 
 
 banana:
   content: "I just ate a banana!"

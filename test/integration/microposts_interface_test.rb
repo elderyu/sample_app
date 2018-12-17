@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 
   def setup
     @user = users :michael
@@ -53,19 +50,36 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
 
   test "test micropost sidebar count" do
     log_in_as @user
+
     get root_path
     assert_equal @user.microposts.count, 53
-    # Rails::logger.debug "string".pluralize(3)
     assert_match "#{@user.microposts.count} "+"micropost".pluralize(@user.microposts.count), response.body
     assert_match "53 microposts", response.body
-    get user_path(@user10)
-    # follow_redirect!
-    # assert_match "#{@user10.microposts.count} "+"micropost".pluralize(@user10.microposts.count), response.body
-    assert_match "has no microposts", response.body
-    get user_path(@user_lana)
 
+    get user_path(@user10)
+    assert_match "has no microposts", response.body
+
+    get user_path(@user_lana)
     assert_match "Micropost".pluralize(@user_lana.microposts.count)+" (#{@user_lana.microposts.count})", response.body
     assert_match "Micropost (1)", response.body
+  end
+
+  test "image upload" do
+    log_in_as @user
+
+    get root_path
+    assert_template 'static_pages/home'
+    assert_match "micropost[picture]", response.body
+    assert_select 'input', name: "micropost[picture]"
+    content = "My hedgehog"
+    picture = fixture_file_upload "test/fixtures/pobrane.jpg"
+    assert_difference 'Micropost.count', 1 do
+      post microposts_path, params: {micropost: {content: content, picture: picture}}
+    end
+    follow_redirect!
+    assert_template 'static_pages/home'
+    assert_match content, response.body
+    assert_match 'pobrane.jpg', response.body
   end
 
 end

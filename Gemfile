@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.5'
 
 # for adding more users
 gem 'faker', '1.7.3'
+#uploading images
+gem 'carrierwave'
+gem 'mini_magick'
 
 # for pagination
 gem 'will_paginate', '3.1.6'
@@ -68,8 +71,6 @@ group :development do
 
 end
 
-
-
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
@@ -85,6 +86,7 @@ end
 # postgreSQL used by heroku
 group :production do
   gem 'pg', '1.1.3'
+  gem 'fog', '1.42'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -7,6 +7,8 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "example user", email: "example@gmail.com", password: "foobar12345", password_confirmation: "foobar12345")
     @user2 = User.new(name: "example user", email: "example@gmail.com", password: "foobar12345", password_confirmation: "foobar12345")
+    @user_michael = users(:michael)
+    @user_archer = users(:archer)
   end
 
   test "should be valid" do
@@ -31,16 +33,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not @duplicate_user.valid?
   end
 
-  # test "email should be downcased" do
-  #   @user.email.upcase!
-  #   @user.save
-  #   @user2.save
-  #   assert_equal @user2.email, @user.reload.email
-  # end
+  test "email should be downcased" do
+    @user.email.upcase!
+    @user.save
+    @user2.save
+    assert_equal @user2.email, @user.reload.email
+  end
 
   test "password should be long enough" do
     @user.password = "22"
-    #Rails::logger.debug "User password_digest: #{@user.password_digest}"
     assert_not @user.valid?
   end
 
@@ -48,12 +49,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.name.nil?
     @user.remember
     assert_not @user.remember_digest.blank?
-    #assert_equal @user.remember_token, @user. remember_digest
   end
 
-  # test "cookies" do
-  #   cookies.signed[:num] = 13
-  #   assert_equal cookies.signed[:num], 13
-  # end
+  test "following users" do
+    assert_not @user_michael.following? @user_archer
+    @user_michael.follow @user_archer
+    assert @user_michael.following? @user_archer
+    @user_michael.unfollow @user_archer
+    assert_not @user_michael.following? @user_archer
+  end
 
 end

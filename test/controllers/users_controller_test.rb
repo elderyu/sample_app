@@ -70,7 +70,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_template 'users/index'
     assert_select 'a', "| Delete"
+  end
 
+  test "should redirect following when not logged in" do
+    # log_in_as @user
+    get following_user_path(@user)
+    assert_redirected_to login_path
+  end
+
+  test "should redirect followers when not logged in" do
+    # log_in_as @user
+    get following_user_path(@user)
+    assert_redirected_to login_path
   end
 
 end
